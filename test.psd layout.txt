@@ -1,0 +1,2 @@
+custom	--text layer
+Layer 0	--onderste witte background layer
