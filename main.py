@@ -1,17 +1,24 @@
 import win32com.client
 import os
+from os import path
 import psutil
+import time
 
 #Check if Ps is running
 if("Photoshop.exe" in (i.name() for i in psutil.process_iter())):
     os.system("TASKKILL /F /IM Photoshop.exe")
 
+#Check if result.png already exists
+if(path.exists("result.png")):
+    os.remove("result.png")
 
+time.sleep(2)
 
 #Dispatch
 psApp = win32com.client.Dispatch("Photoshop.Application")
 psApp.Open(r"C:\Users\Samuel\OneDrive - KU Leuven\Persoonlijk\Coding Projects\Python\Photoshop-automation\test.psd")
 doc = psApp.Application.ActiveDocument
+time.sleep(2)
 
 #Edit text
 text_layer = doc.ArtLayers["custom"]
