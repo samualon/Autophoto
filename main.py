@@ -16,9 +16,9 @@ options = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
 options.Format = 13   # PNG Format
 options.PNG8 = False  # Sets it to PNG-24 bit
 
-pngfile = "result.png"
+pngfile = r"C:\Users\Samuel\OneDrive - KU Leuven\Persoonlijk\Coding Projects\Python\Photoshop-automation\result.png"
 
 doc.Export(ExportIn=pngfile, ExportAs=2, Options=options)
 
-
+#End check
 print("Done!")
