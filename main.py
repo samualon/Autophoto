@@ -1,5 +1,12 @@
 import win32com.client
 import os
+import psutil
+
+#Check if Ps is running
+if("Photoshop.exe" in (i.name() for i in psutil.process_iter())):
+    os.system("TASKKILL /F /IM Photoshop.exe")
+
+
 
 #Dispatch
 psApp = win32com.client.Dispatch("Photoshop.Application")
