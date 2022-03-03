@@ -14,16 +14,29 @@ if(path.exists("result.png")):
 
 time.sleep(2)
 
+#Locating template
+print("Enter the location of the template (+ PSD name): ")
+templateLocation = input()
+
 #Dispatch
 psApp = win32com.client.Dispatch("Photoshop.Application")
-psApp.Open(r"C:\Users\Samuel\OneDrive - KU Leuven\Persoonlijk\Coding Projects\Python\Photoshop-automation\test.psd")
+psApp.Open(templateLocation)
 doc = psApp.Application.ActiveDocument
+
+#Text and layer input
+print("Enter the layer name which should be changed: ")
+desiredLayer = input()
+
+print("Enter the desired text: ")
+desiredText = input()
+
+
 time.sleep(2)
 
 #Edit text
-text_layer = doc.ArtLayers["custom"]
+text_layer = doc.ArtLayers[desiredLayer]
 text_of_layer = text_layer.TextItem
-text_of_layer.contents = "werkt!"
+text_of_layer.contents = desiredText
 
 #Export to png
 options = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
