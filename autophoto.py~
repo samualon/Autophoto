@@ -3,6 +3,19 @@ import os
 from os import path
 import psutil
 import time
+import sys
+
+
+
+#Arguments check
+if(len(sys.argv) != 4):
+    print("Fautly arguments! Correct syntax: autophoto.py 'doc_location' 'desired_layer' 'desired_text'.")
+    print(len(sys.argv))
+    for i in sys.argv:
+        print(i)
+    exit()
+
+
 
 #Pre startup checks
 if("Photoshop.exe" in (i.name() for i in psutil.process_iter())):
@@ -15,27 +28,17 @@ time.sleep(2)
 
 
 
-#Locating template
-print("Enter the location of the template (+ PSD name): ")
-templateLocation = input()
+#Argument declaration
+templateLocation = str(sys.argv[1])
+desiredLayer = str(sys.argv[2])
+desiredText = str(sys.argv[3])
 
 
 
 #Dispatch
-psApp = win32com.client.Dispatch("Photoshop.Application")
+psApp = win32com.client.Dispatch("5516.Application")
 psApp.Open(templateLocation)
 doc = psApp.Application.ActiveDocument
-
-
-
-#Text and layer input
-print("Enter the layer name which should be changed: ")
-desiredLayer = input()
-
-print("Enter the desired text: ")
-desiredText = input()
-
-time.sleep(2)
 
 
 
@@ -47,7 +50,7 @@ text_of_layer.contents = desiredText
 
 
 #Exporting
-options = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
+options = win32com.client.Dispatch('5516.ExportOptionsSaveForWeb')
 options.Format = 13   # PNG Format
 options.PNG8 = False  # Sets it to PNG-24 bit
 
