@@ -36,7 +36,7 @@ desiredText = str(sys.argv[3])
 
 
 #Dispatch
-psApp = win32com.client.Dispatch("5516.Application")
+psApp = win32com.client.Dispatch("Photoshop.Application")
 psApp.Open(templateLocation)
 doc = psApp.Application.ActiveDocument
 
